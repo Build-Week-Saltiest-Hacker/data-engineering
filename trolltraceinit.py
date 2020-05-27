@@ -3,7 +3,7 @@ from flask import Flask
 #from web_app.routes.models import db, migrate, Game, parse_records
 #from web_app.routes.gamehome_routes import gamehome_routes
 #from web_app.routes.gameaddid_routes import gameaddid_routes
-from application.trolltrace import db, migrate, hightroll_routes, trollscore_routes, usertext_routes
+from trolltrace import db, migrate, hightroll_routes, trollscore_routes, usertext_routes
 DATABASE_URI = "'trollsdb.sqlite3" # using relative filepath
 #DATABASE_URI = "sqlite:////Users/Username/Desktop/your-repo-name/web_app_99.db" # using absolute filepath on Mac (recommended)
 #DATABASE_URI = "sqlite:///C:\Users\JayBeast\Desktop\tweetme.db" # using absolute filepath on Windows (recommended) h/t: https://stackoverflow.com/a/19262231/670433

@@ -20,6 +20,7 @@ migrate = Migrate()
 trollscore_routes = Blueprint("trollscore_routes", __name__)
 usertext_routes = Blueprint("usertext_routes", __name__)
 hightroll_routes = Blueprint("hightroll_routes", __name__)
+home_routes = Blueprint("home_routes", __name__)
 
 #class Troll(db.Model):
 #    by = db.Column(db.String(128), primary_key=True)
@@ -27,7 +28,11 @@ hightroll_routes = Blueprint("hightroll_routes", __name__)
 #    vader_score = db.Column(db.Integer, nullable=False)
 #    neg_score = db.Column(db.Integer, nullable=False)
 
+@home_routes.route("/")
+def about():
+    return "Let's find some trolls!"
 
+    
 @hightroll_routes.route("/hightroll/")
 def hightroll():
     connection = sqlite3.connect("trollsdb.sqlite3")
@@ -53,7 +58,7 @@ def trollscore(x):
 def usertext(x):
     connection = sqlite3.connect("trollsdb.sqlite3")
     cursor = connection.cursor()
-    usertext = f'''select t.text   from trolls_table as t  
+    usertext = f'''select t.text from trolls_table as t  
     where t.by = '{x}';'''
     r3 = cursor.execute(usertext)
     return str(r3.fetchall())

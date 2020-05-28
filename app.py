@@ -13,7 +13,7 @@ import numpy as np
 import app as flask_app 
 from flask import Flask
 
-
+APP = create_app()
 
 #from web_app.routes.models import db, migrate, Game, parse_records
 #from web_app.routes.gamehome_routes import gamehome_routes

@@ -23,6 +23,7 @@ DATABASE_URI = "'trollsdb.sqlite3" # using relative filepath
 #DATABASE_URI = "sqlite:///C:\Users\JayBeast\Desktop\tweetme.db" # using absolute filepath on Windows (recommended) h/t: https://stackoverflow.com/a/19262231/670433
 
 def create_app():
+    
     app = Flask(__name__)
 
     app.config["SQLALCHEMY_DATABASE_URI"] = DATABASE_URI

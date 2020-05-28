@@ -13,7 +13,7 @@ import numpy as np
 import app as flask_app 
 from flask import Flask
 
-APP = create_app()
+
 
 #from web_app.routes.models import db, migrate, Game, parse_records
 #from web_app.routes.gamehome_routes import gamehome_routes
@@ -23,19 +23,19 @@ DATABASE_URI = "'trollsdb.sqlite3" # using relative filepath
 #DATABASE_URI = "sqlite:////Users/Username/Desktop/your-repo-name/web_app_99.db" # using absolute filepath on Mac (recommended)
 #DATABASE_URI = "sqlite:///C:\Users\JayBeast\Desktop\tweetme.db" # using absolute filepath on Windows (recommended) h/t: https://stackoverflow.com/a/19262231/670433
 
-def create_app():
+
     
-    app = Flask(__name__)
+app = Flask(__name__)
 
-    app.config["SQLALCHEMY_DATABASE_URI"] = DATABASE_URI
-    db.init_app(app)
-    migrate.init_app(app, db)
+app.config["SQLALCHEMY_DATABASE_URI"] = DATABASE_URI
+db.init_app(app)
+migrate.init_app(app, db)
 
-    app.register_blueprint(hightroll_routes)
-    app.register_blueprint(trollscore_routes)
-    app.register_blueprint(usertext_routes)
-    app.register_blueprint(home_routes)
-    return app
+app.register_blueprint(hightroll_routes)
+app.register_blueprint(trollscore_routes)
+app.register_blueprint(usertext_routes)
+app.register_blueprint(home_routes)
+
 
 
 

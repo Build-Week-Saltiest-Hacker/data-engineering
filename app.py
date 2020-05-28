@@ -22,29 +22,29 @@ DATABASE_URI = "'trollsdb.sqlite3" # using relative filepath
 #DATABASE_URI = "sqlite:////Users/Username/Desktop/your-repo-name/web_app_99.db" # using absolute filepath on Mac (recommended)
 #DATABASE_URI = "sqlite:///C:\Users\JayBeast\Desktop\tweetme.db" # using absolute filepath on Windows (recommended) h/t: https://stackoverflow.com/a/19262231/670433
 
-db = SQLAlchemy()
-migrate = Migrate()
+#db = SQLAlchemy()
+#migrate = Migrate()
     
 app = Flask(__name__)
 
 app.config["SQLALCHEMY_DATABASE_URI"] = DATABASE_URI
-db.init_app(app)
-migrate.init_app(app, db)
+#db.init_app(app)
+#migrate.init_app(app, db)
 
-app.register_blueprint(hightroll_routes)
-app.register_blueprint(trollscore_routes)
-app.register_blueprint(usertext_routes)
-app.register_blueprint(home_routes)
+#app.register_blueprint(hightroll_routes)
+#app.register_blueprint(trollscore_routes)
+#app.register_blueprint(usertext_routes)
+#app.register_blueprint(home_routes)
 
 
 
 
 
 #vaderroutes = Blueprint("vaderroutes_routes", __name__)
-trollscore_routes = Blueprint("trollscore_routes", __name__)
-usertext_routes = Blueprint("usertext_routes", __name__)
-hightroll_routes = Blueprint("hightroll_routes", __name__)
-home_routes = Blueprint("home_routes", __name__)
+#trollscore_routes = Blueprint("trollscore_routes", __name__)
+#usertext_routes = Blueprint("usertext_routes", __name__)
+#hightroll_routes = Blueprint("hightroll_routes", __name__)
+#home_routes = Blueprint("home_routes", __name__)
 
 #class Troll(db.Model):
 #    by = db.Column(db.String(128), primary_key=True)
@@ -52,12 +52,12 @@ home_routes = Blueprint("home_routes", __name__)
 #    vader_score = db.Column(db.Integer, nullable=False)
 #    neg_score = db.Column(db.Integer, nullable=False)
 
-@home_routes.route("/")
+@app.route("/")
 def about():
     return "Let's find some trolls!"
 
     
-@hightroll_routes.route("/hightroll/")
+@app.route("/hightroll/")
 def hightroll():
     connection = sqlite3.connect("trollsdb.sqlite3")
     cursor = connection.cursor()
@@ -68,7 +68,7 @@ def hightroll():
     r1 = cursor.execute(hightroll)
     return str( r1.fetchall())
 
-@trollscore_routes.route("/trollscore/<x>", methods=["GET","POST"])
+@app.route("/trollscore/<x>", methods=["GET","POST"])
 def trollscore(x):
     connection = sqlite3.connect("trollsdb.sqlite3")
     cursor = connection.cursor()
@@ -83,7 +83,7 @@ def trollscore(x):
     
     return result 
 
-@usertext_routes.route("/user/<x>", methods=["GET","POST"])
+@app.route("/user/<x>", methods=["GET","POST"])
 def usertext(x):
     connection = sqlite3.connect("trollsdb.sqlite3")
     cursor = connection.cursor()

@@ -15,7 +15,7 @@ flask = "*"
 flask-sqlalchemy = "*"
 flask-migrate = "*"
 jsonify = "*"
-gunicorn = "19.9.0"
+gunicorn = "*"
 
 [requires]
 python_version = "3.7"

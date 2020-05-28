@@ -10,8 +10,7 @@ import psycopg2
 from psycopg2.extras import execute_values
 import sqlite3
 import numpy as np 
-import app as flask_app 
-from flask import Flask
+from flask import Flask 
 
 
 
@@ -23,7 +22,8 @@ DATABASE_URI = "'trollsdb.sqlite3" # using relative filepath
 #DATABASE_URI = "sqlite:////Users/Username/Desktop/your-repo-name/web_app_99.db" # using absolute filepath on Mac (recommended)
 #DATABASE_URI = "sqlite:///C:\Users\JayBeast\Desktop\tweetme.db" # using absolute filepath on Windows (recommended) h/t: https://stackoverflow.com/a/19262231/670433
 
-
+db = SQLAlchemy()
+migrate = Migrate()
     
 app = Flask(__name__)
 
@@ -39,8 +39,6 @@ app.register_blueprint(home_routes)
 
 
 
-db = SQLAlchemy()
-migrate = Migrate()
 
 #vaderroutes = Blueprint("vaderroutes_routes", __name__)
 trollscore_routes = Blueprint("trollscore_routes", __name__)

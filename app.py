@@ -6,13 +6,14 @@ import pandas as pd
 import os
 import json
 import jsonify 
-from dotenv import load_dotenv 
 import psycopg2
 from psycopg2.extras import execute_values
 import sqlite3
 import numpy as np 
-
+import app as flask_app 
 from flask import Flask
+
+
 
 #from web_app.routes.models import db, migrate, Game, parse_records
 #from web_app.routes.gamehome_routes import gamehome_routes
@@ -98,8 +99,6 @@ def usertext(x):
     result = df.to_json(orient='records')
     
     return result 
-
-
 
 
 

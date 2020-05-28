@@ -61,13 +61,13 @@ def about():
 def hightroll():
     connection = sqlite3.connect("trollsdb.sqlite3")
     cursor = connection.cursor()
-    hightroll = '''select distinct t.text, t.by
+    hightroll = '''select distinct t.text, t.by, t.vader_score
     from trolls_table as t where t.neg_score > .2 AND t.vader_score < -.7
     order by t.neg_score DESC
     limit 10;'''
     r1 = cursor.execute(hightroll)
     data =  (r1.fetchall())
-    df = pd.DataFrame(data, columns=[ 'text', 'username'])
+    df = pd.DataFrame(data, columns=[ 'text', 'username', 'score'])
     result = df.to_json(orient='records')
     
     return result 

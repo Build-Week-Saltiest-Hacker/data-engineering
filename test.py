@@ -21,4 +21,4 @@ def user_vader(meddlepal):
     return ( r1.fetchall())
 
 if __name__ == "__main__":
-    print( r1.fetchall())    
+    print(r1.fetchall())    

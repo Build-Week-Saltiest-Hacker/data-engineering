@@ -24,7 +24,8 @@ print( r1.fetchall())
 q2 = ''' select t.by, t.neg_score, t.vader_score, t.text
 from trolls_table as t 
 where t.neg_score > .2 AND t.vader_score < -.6
-order by t.neg_score DESC;'''
+order by t.neg_score DESC
+limit 10;'''
 
 
 r2= cursor.execute(q2)

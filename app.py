@@ -66,7 +66,11 @@ def hightroll():
     order by t.neg_score DESC
     limit 10;'''
     r1 = cursor.execute(hightroll)
-    return str( r1.fetchall())
+    data =  (r1.fetchall())
+    df = pd.DataFrame(data, columns=[ 'text', 'username'])
+    result = df.to_json(orient='records')
+    
+    return result 
 
 @app.route("/trollscore/<x>", methods=["GET","POST"])
 def trollscore(x):

@@ -83,7 +83,7 @@ def hightroll():
     limit 10;'''
     r1 = cursor.execute(hightroll)
     data =  (r1.fetchall())
-    df = pd.DataFrame(data, columns=[ 'score', 'username', 'text'])
+    df = pd.DataFrame(data, columns=[ 'score', 'hn_username', 'text'])
     result = df.to_json(orient='records')
     
     return result     
@@ -97,7 +97,7 @@ def trollscore(x):
    
     r2 = cursor.execute(trollscore)
     data = (r2.fetchall())
-    df = pd.DataFrame(data, columns=[ 'username', 'negativity','score'])
+    df = pd.DataFrame(data, columns=[ 'hn_username', 'negativity','score'])
 
     result = df.to_json(orient='records')
     
@@ -111,7 +111,7 @@ def usertext(x):
     where t.by = '{x}';'''
     r3 = cursor.execute(usertext)
     data = (r3.fetchall())
-    df = pd.DataFrame(data, columns=[ 'text', 'username', 
+    df = pd.DataFrame(data, columns=[ 'text', 'hn_username', 
                                      'score'])
 
     result = df.to_json(orient='records')

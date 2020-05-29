@@ -83,7 +83,7 @@ def hightroll():
     limit 10;'''
     r1 = cursor.execute(hightroll)
     data =  (r1.fetchall())
-    df = pd.DataFrame(data, columns=[ 'text', 'username', 'score'])
+    df = pd.DataFrame(data, columns=[ 'score', 'username', 'text'])
     result = df.to_json(orient='records')
     
     return result     

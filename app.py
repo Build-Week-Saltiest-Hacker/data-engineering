@@ -57,20 +57,36 @@ def about():
     return "Let's find some trolls!"
 
     
+#@app.route("/hightroll/")
+#def hightroll():
+#    connection = sqlite3.connect("trollsdb.sqlite3")
+#    cursor = connection.cursor()
+#    hightroll = '''select distinct t.text, t.by, t.vader_score
+#    from trolls_table as t where t.neg_score > .2 AND t.vader_score < -.7
+#    order by t.neg_score DESC
+#    limit 10;'''
+#    r1 = cursor.execute(hightroll)
+#    data =  (r1.fetchall())
+#    df = pd.DataFrame(data, columns=[ 'text', 'username', 'score'])
+#    result = df.to_json(orient='records')
+#    
+#    return result 
+
 @app.route("/hightroll/")
 def hightroll():
     connection = sqlite3.connect("trollsdb.sqlite3")
     cursor = connection.cursor()
-    hightroll = '''select distinct t.text, t.by, t.vader_score
-    from trolls_table as t where t.neg_score > .2 AND t.vader_score < -.7
-    order by t.neg_score DESC
+    hightroll = '''select distinct(t.vader_score),  t.by, t.text
+    from trolls_table as t
+    where t.vader_score<-.85  and t.neg_score >.37 and length(t.text) <200
+    order by t.vader_score
     limit 10;'''
     r1 = cursor.execute(hightroll)
     data =  (r1.fetchall())
     df = pd.DataFrame(data, columns=[ 'text', 'username', 'score'])
     result = df.to_json(orient='records')
     
-    return result 
+    return result     
 
 @app.route("/trollscore/<x>", methods=["GET","POST"])
 def trollscore(x):
